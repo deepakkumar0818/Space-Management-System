@@ -69,7 +69,7 @@ export default function LocationBookingPage() {
       const startTimeIso = `${form.date}T${selectedSlot.time}:00.000Z`;
       const endTimeIso = startTimeIso; // demo: treat as single-slot booking
 
-      await fetch("http://localhost:4000/api/v1/bookings", {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/bookings`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -64,7 +64,7 @@ export default function OrdersPaymentsPage() {
       }
 
       try {
-        const response = await fetch("http://localhost:4000/api/v1/bookings", {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/bookings`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

@@ -32,7 +32,7 @@ export default function LoginPage() {
     setForm((prev) => ({ ...prev, loading: true, error: undefined }));
 
     try {
-      const response = await fetch("http://localhost:4000/api/v1/auth/login", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
