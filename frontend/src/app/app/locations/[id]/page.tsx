@@ -51,6 +51,7 @@ export default function LocationBookingPage() {
     event.preventDefault();
     if (!form.date || !form.selectedSlot) return;
 
+    const selectedSlot = form.selectedSlot; // Store for type safety
     setForm((prev) => ({ ...prev, submitting: true }));
 
     // Call backend booking API so admin and customer views see this booking.
@@ -65,7 +66,7 @@ export default function LocationBookingPage() {
         return;
       }
 
-      const startTimeIso = `${form.date}T${form.selectedSlot.time}:00.000Z`;
+      const startTimeIso = `${form.date}T${selectedSlot.time}:00.000Z`;
       const endTimeIso = startTimeIso; // demo: treat as single-slot booking
 
       await fetch("http://localhost:4000/api/v1/bookings", {
@@ -82,7 +83,7 @@ export default function LocationBookingPage() {
           currency: "INR",
           metadata: {
             locationLabel,
-            slot: form.selectedSlot.label,
+            slot: selectedSlot.label,
           },
         }),
       });
@@ -90,7 +91,7 @@ export default function LocationBookingPage() {
       // fail silently in demo – UI still shows confirmation
     }
 
-    setBookedTimes((prev) => [...prev, form.selectedSlot.time]);
+    setBookedTimes((prev) => [...prev, selectedSlot.time]);
 
     setForm((prev) => ({
       ...prev,
