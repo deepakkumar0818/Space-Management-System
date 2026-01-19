@@ -19,7 +19,7 @@ interface LoginBody {
   password: string;
 }
 
-function signToken(user: IUser) {
+function signToken(user: any) {
   return jwt.sign(
     { sub: user._id.toString(), role: user.role },
     JWT_SECRET,
